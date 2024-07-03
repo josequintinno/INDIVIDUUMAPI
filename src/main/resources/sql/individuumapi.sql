@@ -54,7 +54,7 @@ insert into tb_tipo_documento (sigla, descricao) values ('RG', 'Registro Geral')
 insert into tb_tipo_documento (sigla, descricao) values ('CPF', 'Cadastro de Pessoa Física');
 insert into tb_tipo_documento (sigla, descricao) values ('CNPJ', 'Cadastro Nacional de Pessoa Jurídica');
 
-insert into tb_documento (id_pessoa, numero, orgao_emissor) values (
+insert into tb_documento (id_pessoa, id_tipo_documento, numero, orgao_emissor) values (
 	(select codigo from tb_pessoa where nome = 'José Quintinno'),
 	(select codigo from tb_tipo_documento where sigla = 'RG'),
 	'152783453',
