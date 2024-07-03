@@ -1,5 +1,5 @@
-drop table tb_tipo_pessoa cascade;
-drop table tb_pessoa cascade;
+drop table if exists tb_tipo_pessoa cascade;
+drop table if exists tb_pessoa cascade;
 
 create table if not exists tb_tipo_pessoa (
 	codigo serial not null,
@@ -12,6 +12,8 @@ create table if not exists tb_pessoa (
 	codigo serial not null,
 	id_tipo_pessoa integer not null,
 	nome varchar not null,
+	proprietario varchar not null, -- GERAL, <NOME_SISTEMA_CADASTRO>
+	e_ativo boolean not null default true,
 	constraint pk_pessoa primary key (codigo),
 	constraint fk_tipo_pessoa foreign key (id_tipo_pessoa) references tb_tipo_pessoa (codigo),
 	constraint ck_pessoa_nome unique (nome)
@@ -21,9 +23,11 @@ insert into tb_tipo_pessoa (descricao) values ('Pessoa Física');
 insert into tb_tipo_pessoa (descricao) values ('Pessoa Jurídica');
 insert into tb_tipo_pessoa (descricao) values ('Pessoa Autoridade');
 
-insert into tb_pessoa (id_tipo_pessoa, nome) values (
+insert into tb_pessoa (id_tipo_pessoa, nome, proprietario, e_ativo) values (
 (select codigo from tb_tipo_pessoa where descricao = 'Pessoa Física'), 
-'José Quintinno'
+'José Quintinno',
+'GERAL',
+true
 );
 
 /*

@@ -25,6 +25,12 @@ public class PessoaEntity {
     @Column(name = "NOME", nullable = false)
     private String nome;
 
+    @Column(name = "PROPRIETARIO", nullable = false)
+    private String proprietario;
+
+    @Column(name = "E_ATIVO", nullable = false)
+    private Boolean eAtivo;
+
     public PessoaEntity () { }
 
     public Long getCodigo() {
@@ -49,6 +55,22 @@ public class PessoaEntity {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getProprietario() {
+        return proprietario;
+    }
+
+    public void setProprietario(String proprietario) {
+        this.proprietario = proprietario;
+    }
+
+    public Boolean geteAtivo() {
+        return eAtivo;
+    }
+
+    public void seteAtivo(Boolean eAtivo) {
+        this.eAtivo = eAtivo;
     }
 
 }
