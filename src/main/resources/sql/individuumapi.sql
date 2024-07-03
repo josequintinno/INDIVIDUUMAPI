@@ -41,4 +41,10 @@ tb_pessoa_fisica ();
 
 tb_pessoa_juridica ();
 
-tb_documento ();
+create table if not exists tb_documento (
+	codigo serial not null,
+	id_pessoa integer not null,
+	numero varchar not null,
+	data_vencimento null,
+	orgao_emissor varchar not null,
+);
