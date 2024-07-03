@@ -1,6 +1,6 @@
 drop table if exists tb_tipo_pessoa cascade;
 drop table if exists tb_pessoa cascade;
-drop table tb_tipo_documento cascade;
+drop table if exists tb_tipo_documento cascade;
 drop table if exists tb_documento cascade;
 
 create table if not exists tb_tipo_pessoa (
@@ -14,7 +14,9 @@ create table if not exists tb_pessoa (
 	codigo serial not null,
 	id_tipo_pessoa integer not null,
 	nome varchar not null,
-	proprietario varchar not null, -- GERAL, <NOME_SISTEMA_CADASTRO>
+	naturalidade varchar null,
+	data_inicio date null,
+	proprietario varchar not null default 'GERAL', -- GERAL, <NOME_SISTEMA_CADASTRO>
 	e_ativo boolean not null default true,
 	constraint pk_pessoa primary key (codigo),
 	constraint fk_tipo_pessoa foreign key (id_tipo_pessoa) references tb_tipo_pessoa (codigo),
@@ -34,7 +36,7 @@ create table if not exists tb_documento (
 	id_tipo_documento integer not null,
 	id_pessoa integer not null,
 	numero varchar not null,
-	orgao_emissor varchar not null,
+	orgao_emissor varchar null,
 	constraint pk_documento primary key (codigo),
 	constraint fk_pessoa foreign key (id_pessoa) references tb_pessoa (codigo)
 );
@@ -67,9 +69,3 @@ insert into tb_documento (id_pessoa, id_tipo_documento, numero, orgao_emissor) v
 	select * from tb_tipo_documento;
 	select * from tb_documento;
 */
-
-tb_pessoa ();
-
-tb_pessoa_fisica ();
-
-tb_pessoa_juridica ();
